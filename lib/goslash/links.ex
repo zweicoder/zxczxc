@@ -1,5 +1,4 @@
 defmodule Goslash.Links do
-  import Ecto.Changeset
   import Ecto.Query, warn: false
 
   alias Goslash.Repo
