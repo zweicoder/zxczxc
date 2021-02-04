@@ -1,5 +1,10 @@
 defmodule Goslash.ReleaseTasks do
   @app :goslash
+  @env Mix.env()
+
+  def env do
+    @env
+  end
 
   def migrate do
     load_app()

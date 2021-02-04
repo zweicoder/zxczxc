@@ -1,15 +1,9 @@
 version: "3.9"
 services:
   web:
-    build:
-      context: .
-      args:
-        DATABASE_URL: ${DATABASE_URL}
-        SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-    env_file:
-      - .env
-    ports:
-      - "4000:4000"
+    extends:
+      file: web.yml
+      service: web
 
   db:
     # We use the predefined Postgres image
@@ -23,6 +17,16 @@ services:
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  db-migrations:
+    extends:
+      file: web.yml
+      service: web
+    command: ./bin/goslash eval "Goslash.ReleaseTasks.migrate"
+    depends_on:
+      - web
+    profiles:
+      - tools
 
 volumes:
   pgdata:

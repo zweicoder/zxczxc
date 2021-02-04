@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :goslash, :environment, :dev
+
 # Configure your database
 config :goslash, Goslash.Repo,
   username: "postgres",
@@ -16,7 +18,7 @@ config :goslash, Goslash.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :goslash, GoslashWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 3000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
